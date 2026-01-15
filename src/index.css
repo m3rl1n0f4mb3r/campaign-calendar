@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+
+/* Fallback serif for body text */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Shadowdark color palette */
+  --sd-black: #1a1a1a;
+  --sd-dark-gray: #2b2b2b;
+  --sd-medium-gray: #4a4a4a;
+  --sd-light-gray: #d0d0d0;
+  --sd-white: #f5f5f5;
+  --sd-accent: #8b0000; /* Dark red for accents */
+  --sd-border: #3a3a3a;
+
+  /* Component-specific colors */
+  --sd-card-bg: #2b2b2b;
+  --sd-header-bg: #4a4a4a;
+  --sd-text: #d0d0d0;
+  --sd-current-day-bg: rgba(139, 0, 0, 0.3);
+
+  /* Special Days colors */
+  --sd-accent-bg: rgba(184, 134, 11, 0.3); /* Darkgoldenrod with transparency */
+  --sd-accent-border: #b8860b; /* Darkgoldenrod */
+  --sd-accent-text: #ffd700; /* Gold */
+  --sd-special-day-bg: rgba(255, 215, 0, 0.1); /* Light gold background */
+
+  /* Value indicator colors (for income, growth, etc.) */
+  --sd-positive: #90ee90; /* Light green - for positive values */
+  --sd-negative: #ef4444; /* Red - for negative values */
+  --sd-positive-bg: rgba(144, 238, 144, 0.15);
+  --sd-negative-bg: rgba(239, 68, 68, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Crimson Text', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--sd-black);
+  color: var(--sd-light-gray);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  color: var(--sd-white);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--sd-border);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  background-color: var(--sd-dark-gray);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Bootstrap overrides for Shadowdark theme */
+.btn-primary {
+  background-color: var(--sd-medium-gray);
+  border-color: var(--sd-border);
+  color: var(--sd-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--sd-dark-gray);
+  border-color: var(--sd-light-gray);
+}
+
+.btn-secondary {
+  background-color: var(--sd-dark-gray);
+  border-color: var(--sd-border);
+  color: var(--sd-light-gray);
+}
+
+.btn-secondary:hover {
+  background-color: var(--sd-medium-gray);
+  border-color: var(--sd-light-gray);
+}
+
+.card {
+  background-color: var(--sd-dark-gray);
+  border: 1px solid var(--sd-border);
+  color: var(--sd-light-gray);
+}
+
+.card-header {
+  background-color: var(--sd-medium-gray);
+  border-bottom: 1px solid var(--sd-border);
+  color: var(--sd-white);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+}
+
+.form-control {
+  background-color: var(--sd-black);
+  border: 1px solid var(--sd-border);
+  color: var(--sd-light-gray);
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.form-control:focus {
+  background-color: var(--sd-dark-gray);
+  border-color: var(--sd-light-gray);
+  color: var(--sd-white);
+  box-shadow: 0 0 0 0.2rem rgba(208, 208, 208, 0.25);
+}
+
+.form-label {
+  color: var(--sd-white);
+  font-weight: 600;
+}
+
+/* Dark table theme for Shadowdark */
+.table {
+  --bs-table-color: var(--sd-light-gray);
+  --bs-table-bg: var(--sd-black);
+  --bs-table-border-color: var(--sd-border);
+  --bs-table-striped-color: var(--sd-light-gray);
+  --bs-table-striped-bg: rgba(42, 42, 42, 0.6);
+  --bs-table-hover-color: var(--sd-white);
+  --bs-table-hover-bg: rgba(74, 74, 74, 0.4);
+  color: var(--sd-light-gray);
+  background-color: var(--sd-black);
+}
+
+.table thead th {
+  background-color: var(--sd-dark-gray);
+  border-color: var(--sd-border);
+  color: var(--sd-white) !important;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td, .table th {
+  border-color: var(--sd-border);
+  vertical-align: middle;
+  color: var(--sd-light-gray);
+}
+
+.table > tbody > tr {
+  background-color: var(--sd-black);
+}
+
+.table > tbody > tr > td {
+  color: var(--sd-light-gray);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(42, 42, 42, 0.6);
+  --bs-table-accent-bg: rgba(42, 42, 42, 0.6);
+  color: var(--sd-light-gray);
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: var(--sd-black);
+  --bs-table-accent-bg: var(--sd-black);
+  color: var(--sd-light-gray);
+}
+
+.table-hover > tbody > tr:hover > * {
+  background-color: rgba(74, 74, 74, 0.4);
+  --bs-table-accent-bg: rgba(74, 74, 74, 0.4);
+  color: var(--sd-white);
+}
+
+/* Bordered table variant */
+.table-bordered {
+  border: 1px solid var(--sd-border);
+}
+
+/* Value indicator utility classes */
+.text-positive {
+  color: var(--sd-positive) !important;
+}
+
+.text-negative {
+  color: var(--sd-negative) !important;
+}
+
+.bg-positive {
+  background-color: var(--sd-positive-bg) !important;
+}
+
+.bg-negative {
+  background-color: var(--sd-negative-bg) !important;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid var(--sd-border);
+}
+
+.nav-tabs .nav-link {
+  color: var(--sd-light-gray);
+  border: none;
+  background-color: transparent;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--sd-white);
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--sd-white);
+  background-color: var(--sd-dark-gray);
+  border-color: var(--sd-border) var(--sd-border) var(--sd-dark-gray);
+  border-bottom: 2px solid var(--sd-dark-gray);
+  font-weight: 600;
+}
+
+.input-group-text {
+  background-color: var(--sd-medium-gray);
+  border-color: var(--sd-border);
+  color: var(--sd-white);
+}
+
+/* Modal styling */
+.modal-content {
+  background-color: var(--sd-dark-gray);
+  border: 1px solid var(--sd-border);
+  color: var(--sd-light-gray);
+}
+
+.modal-header {
+  background-color: var(--sd-medium-gray);
+  border-bottom: 1px solid var(--sd-border);
+}
+
+.modal-title {
+  color: var(--sd-white);
+}
+
+.modal-body {
+  background-color: var(--sd-dark-gray);
+}
+
+.modal-footer {
+  background-color: var(--sd-dark-gray);
+  border-top: 1px solid var(--sd-border);
+}
+
+.modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal .form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  background-color: var(--sd-dark-gray);
+  border: 1px solid var(--sd-border);
+}
+
+.dropdown-item {
+  color: var(--sd-light-gray);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--sd-medium-gray);
+  color: var(--sd-white);
+}
+
+.dropdown-item.active {
+  background-color: var(--sd-medium-gray);
+  color: var(--sd-white);
+}
+
+.dropdown-divider {
+  border-color: var(--sd-border);
+}
+
+/* Utility classes */
+.text-secondary-muted {
+  color: #6c757d !important;
+}
+
+.icon-secondary-muted {
+  color: #6c757d !important;
+}
+
+/* Override Bootstrap's text-muted in dark theme */
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sd-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sd-medium-gray);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sd-light-gray);
+}
+
+/* Footer styles */
+.app-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  color: var(--sd-medium-gray);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--sd-border);
+  padding-top: 2rem;
+}
+
+.app-footer-quote {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  color: var(--sd-light-gray);
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.app-footer-attribution {
+  font-size: 0.875rem;
+  font-style: normal;
+  margin-top: 0.5rem;
+  color: var(--sd-medium-gray);
+}
+
+.app-footer-logo {
+  margin-bottom: 1rem;
+}
+
+.app-footer-logo img {
+  height: 60px;
+  opacity: 0.9;
+}
+
+.app-footer-license {
+  max-width: 600px;
+  margin: 0 auto;
+}
