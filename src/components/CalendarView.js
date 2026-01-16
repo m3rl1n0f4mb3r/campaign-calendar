@@ -3,6 +3,27 @@ import { Card, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
 import CalendarGrid from './CalendarGrid';
 import { getPreviousMonth, getNextMonth, formatYear } from '../utils/dateUtils';
 
+// Helper to determine which month to display when in a special day period
+const getDisplayMonth = (date, calendarConfig) => {
+  if (!date.isSpecialDay) {
+    return { year: date.year, month: date.month };
+  }
+
+  // Special day - determine anchor month
+  const specialDay = calendarConfig.specialDays?.[date.specialDayIndex];
+  if (!specialDay) {
+    return { year: date.year, month: 1 }; // Fallback
+  }
+
+  if (specialDay.position === 'after') {
+    // Display the month that the special day comes after
+    return { year: date.year, month: specialDay.anchorMonth };
+  } else {
+    // Display the anchor month (the month that the special day comes before)
+    return { year: date.year, month: specialDay.anchorMonth };
+  }
+};
+
 /**
  * CalendarView - Main calendar interface
  * Displays month grid, provides month navigation, handles day selection
@@ -18,27 +39,6 @@ const CalendarView = ({
   onAdvanceDay,
   onPreviousDay
 }) => {
-  // Helper to determine which month to display when in a special day period
-  const getDisplayMonth = (date, calendarConfig) => {
-    if (!date.isSpecialDay) {
-      return { year: date.year, month: date.month };
-    }
-
-    // Special day - determine anchor month
-    const specialDay = calendarConfig.specialDays?.[date.specialDayIndex];
-    if (!specialDay) {
-      return { year: date.year, month: 1 }; // Fallback
-    }
-
-    if (specialDay.position === 'after') {
-      // Display the month that the special day comes after
-      return { year: date.year, month: specialDay.anchorMonth };
-    } else {
-      // Display the anchor month (the month that the special day comes before)
-      return { year: date.year, month: specialDay.anchorMonth };
-    }
-  };
-
   const [viewingDate, setViewingDate] = useState(() =>
     getDisplayMonth(campaign.currentDate, campaign.calendarConfig)
   );
@@ -48,7 +48,7 @@ const CalendarView = ({
   useEffect(() => {
     const displayMonth = getDisplayMonth(campaign.currentDate, campaign.calendarConfig);
     setViewingDate(displayMonth);
-  }, [campaign.currentDate.year, campaign.currentDate.month, campaign.currentDate.isSpecialDay, campaign.currentDate.specialDayIndex]);
+  }, [campaign.currentDate, campaign.calendarConfig]);
 
   const handlePreviousMonth = () => {
     const prevMonth = getPreviousMonth(

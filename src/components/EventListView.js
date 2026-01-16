@@ -28,6 +28,13 @@ function EventListView({
     return campaign.calendarConfig.specialDays[specialDayIndex]?.name || 'Special Day';
   };
 
+  // Get current domain name (looks up from domains, falls back to stored name)
+  const getDomainName = (event) => {
+    if (!event.domainId) return event.domainName || null;
+    const domain = campaign?.domains?.[event.domainId];
+    return domain?.name || event.domainName || 'Unknown Domain';
+  };
+
   // Format event date for display
   const formatEventDate = (event) => {
     if (!event.date) return { main: 'Unknown', sub: '' };
@@ -366,8 +373,8 @@ function EventListView({
                       <span className="text-capitalize" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{event.category || 'campaign'}</span>
                     </td>
                     <td className="d-none d-md-table-cell">
-                      {event.domainName ? (
-                        <Badge bg="secondary">{event.domainName}</Badge>
+                      {getDomainName(event) ? (
+                        <Badge bg="secondary">{getDomainName(event)}</Badge>
                       ) : (
                         <span className="text-muted small">Campaign-wide</span>
                       )}

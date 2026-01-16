@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Row, Col, Badge, Alert, Card, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Modal, Button, Form, Row, Col, Badge, Alert, ListGroup } from 'react-bootstrap';
 
 /**
  * CalendarSettings - Modal for configuring campaign calendar
@@ -10,7 +10,7 @@ import { Modal, Button, Form, Row, Col, Badge, Alert, Card, ListGroup } from 're
  * - Epoch/era labels
  */
 function CalendarSettings({ show, onClose, currentConfig, onSave }) {
-  const getInitialConfig = () => {
+  const getInitialConfig = useCallback(() => {
     const defaults = {
       numMonths: 12,
       monthNames: Array(12).fill('').map((_, i) => `Month ${i + 1}`),
@@ -53,7 +53,7 @@ function CalendarSettings({ show, onClose, currentConfig, onSave }) {
       specialDays: clonedConfig.specialDays || [],
       epoch
     };
-  };
+  }, [currentConfig]);
 
   const [config, setConfig] = useState(getInitialConfig);
 
@@ -65,7 +65,7 @@ function CalendarSettings({ show, onClose, currentConfig, onSave }) {
       setConfig(getInitialConfig());
       setValidationErrors([]);
     }
-  }, [show, currentConfig]);
+  }, [show, getInitialConfig]);
 
   // Handle number of months change
   const handleNumMonthsChange = (newNum) => {

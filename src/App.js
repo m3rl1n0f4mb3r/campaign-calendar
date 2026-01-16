@@ -245,8 +245,8 @@ function App() {
                     campaign={activeCampaign}
                     activeDomainId={null}
                     onSelectDomain={(domainId) => setActiveDomain(activeCampaignId, domainId)}
-                    onUpdateDomain={handleUpdateDomain}
-                    onAddEvent={handleAddEvent}
+                    onUpdateDomain={(domainId, updates) => updateDomain(activeCampaignId, domainId, updates)}
+                    onAddMultipleEvents={handleAddMultipleEvents}
                     onNewDomain={() => setShowDomainWizard(true)}
                   />
                 ) : (
