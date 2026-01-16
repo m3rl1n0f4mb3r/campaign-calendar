@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { Analytics } from '@vercel/analytics/react';
 import { useCampaignManager } from './hooks/useCampaignManager';
 import CampaignSelector from './components/CampaignSelector';
 import DomainSelector from './components/DomainSelector';
@@ -316,6 +317,8 @@ function App() {
           </small>
         </p>
       </footer>
+
+      <Analytics />
     </div>
   );
 }
