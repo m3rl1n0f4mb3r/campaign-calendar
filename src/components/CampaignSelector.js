@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Dropdown, Badge, Modal, Row, Col } from 'react-bootstrap';
+import { Card, Button, Dropdown, Modal } from 'react-bootstrap';
 import { formatDate, formatYear } from '../utils/dateUtils';
 import CalendarSettings from './CalendarSettings';
 

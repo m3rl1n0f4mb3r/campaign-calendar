@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Alert, Modal, Badge } from 'react-bootstrap';
-import { formatDate, formatYear } from '../utils/dateUtils';
+import { formatYear } from '../utils/dateUtils';
 
 function DomainTimeline({ domain, campaign, onAdvanceMonth, onAdvanceYear, onUpdateDomain, onAddEvent }) {
   const [showYearModal, setShowYearModal] = useState(false);

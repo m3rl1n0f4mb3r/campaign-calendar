@@ -6,7 +6,7 @@ function DomainOverview({
   activeDomainId,
   onSelectDomain,
   onUpdateDomain,
-  onAddEvent,
+  onAddMultipleEvents,
   onNewDomain
 }) {
   const [growthResults, setGrowthResults] = useState({});
@@ -242,14 +242,15 @@ function DomainOverview({
 
   // Save all events with their selected dates
   const handleSaveAllEvents = () => {
-    pendingEvents.forEach(event => {
+    const eventsToSave = pendingEvents.map(event => {
       const eventToSave = {
         ...event,
         date: eventDates[event.id]
       };
       delete eventToSave.rolls;
-      onAddEvent(eventToSave);
+      return eventToSave;
     });
+    onAddMultipleEvents(eventsToSave);
     handleCloseEventModal();
   };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { Analytics } from '@vercel/analytics/react';
 import { useCampaignManager } from './hooks/useCampaignManager';
 import CampaignSelector from './components/CampaignSelector';
 import DomainSelector from './components/DomainSelector';
@@ -244,8 +245,8 @@ function App() {
                     campaign={activeCampaign}
                     activeDomainId={null}
                     onSelectDomain={(domainId) => setActiveDomain(activeCampaignId, domainId)}
-                    onUpdateDomain={handleUpdateDomain}
-                    onAddEvent={handleAddEvent}
+                    onUpdateDomain={(domainId, updates) => updateDomain(activeCampaignId, domainId, updates)}
+                    onAddMultipleEvents={handleAddMultipleEvents}
                     onNewDomain={() => setShowDomainWizard(true)}
                   />
                 ) : (
@@ -316,6 +317,8 @@ function App() {
           </small>
         </p>
       </footer>
+
+      <Analytics />
     </div>
   );
 }

@@ -29,11 +29,9 @@ const CalendarGrid = ({
   const daysInMonth = getDaysInMonth(month, year, calendarConfig);
   const firstDayOfWeek = getFirstDayOfMonth(year, month, calendarConfig);
 
-  // Calculate previous and next month info for filling empty cells
+  // Calculate previous month info for filling empty cells
   const prevMonth = month === 1 ? 12 : month - 1;
   const prevYear = month === 1 ? year - 1 : year;
-  const nextMonth = month === 12 ? 1 : month + 1;
-  const nextYear = month === 12 ? year + 1 : year;
   const daysInPrevMonth = getDaysInMonth(prevMonth, prevYear, calendarConfig);
 
   // Build the calendar grid
